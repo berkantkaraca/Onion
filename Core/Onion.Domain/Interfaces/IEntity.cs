@@ -1,9 +1,8 @@
-using Onion.Domain.Enums;
-using Onion.Domain.Interfaces;
+﻿using Onion.Domain.Enums;
 
-namespace Onion.Domain.Entities
+namespace Onion.Domain.Interfaces
 {
-    public abstract class BaseEntity : IEntity
+    public interface IEntity
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }

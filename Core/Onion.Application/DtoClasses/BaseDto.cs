@@ -1,9 +1,9 @@
+using Onion.Application.DtoInterfaces;
 using Onion.Domain.Enums;
-using Onion.Domain.Interfaces;
 
-namespace Onion.Domain.Entities
+namespace Onion.Application.DtoClasses
 {
-    public abstract class BaseEntity : IEntity
+    public abstract class BaseDto : IDto
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }

@@ -1,9 +1,10 @@
 ﻿using Onion.Domain.Entities;
+using Onion.Domain.Interfaces;
 using System.Linq.Expressions;
 
 namespace Onion.Contract.RepositoryInterfaces
 {
-    public interface IRepository<T>  where T : BaseEntity
+    public interface IRepository<T>  where T : class , IEntity
     {
         //Queries
         Task<List<T>> GetAllAsync();
