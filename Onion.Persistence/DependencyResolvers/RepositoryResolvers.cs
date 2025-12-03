@@ -15,7 +15,7 @@ namespace Onion.Persistence.DependencyResolvers
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
-            //Base repository abstract olmazsa aşağıdaki satır kullanılabilir.
+            //BaseRepository abstract değilse ve generic ise aşağıdaki satır kullanılabilir.
             //services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
         }
     }
