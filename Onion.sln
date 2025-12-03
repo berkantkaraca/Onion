@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.Application", "Core\O
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.InnerInfrastructure", "Infrastructure\Onion.InnerInfrastructure\Onion.InnerInfrastructure.csproj", "{4AAC756F-1791-4D15-9B96-53184F4A966E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.Persistence", "Onion.Persistence\Onion.Persistence.csproj", "{B7DBE59C-413D-40DC-8241-948DF1FAC9C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onion.Persistence", "Infrastructure\Onion.Persistence\Onion.Persistence.csproj", "{C8774BCB-386D-BACE-4F7D-8F109919AEBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{4AAC756F-1791-4D15-9B96-53184F4A966E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AAC756F-1791-4D15-9B96-53184F4A966E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AAC756F-1791-4D15-9B96-53184F4A966E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7DBE59C-413D-40DC-8241-948DF1FAC9C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7DBE59C-413D-40DC-8241-948DF1FAC9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7DBE59C-413D-40DC-8241-948DF1FAC9C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7DBE59C-413D-40DC-8241-948DF1FAC9C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8774BCB-386D-BACE-4F7D-8F109919AEBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8774BCB-386D-BACE-4F7D-8F109919AEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8774BCB-386D-BACE-4F7D-8F109919AEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8774BCB-386D-BACE-4F7D-8F109919AEBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,7 +54,7 @@ Global
 		{42A8F7B4-ED25-4A34-9805-FC4C4A81726D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{CC071712-455A-4725-910C-42CD062C7335} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{4AAC756F-1791-4D15-9B96-53184F4A966E} = {E03F8421-C07A-4228-AC47-4912852FD11F}
-		{B7DBE59C-413D-40DC-8241-948DF1FAC9C3} = {E03F8421-C07A-4228-AC47-4912852FD11F}
+		{C8774BCB-386D-BACE-4F7D-8F109919AEBC} = {E03F8421-C07A-4228-AC47-4912852FD11F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB2D792A-52A4-44D4-9CE8-9721DC018EC4}
