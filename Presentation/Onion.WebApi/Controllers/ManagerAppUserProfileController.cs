@@ -9,12 +9,12 @@ namespace Onion.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppUserProfileController : ControllerBase
+    public class ManagerAppUserProfileController : ControllerBase
     {
         private readonly IAppUserProfileManager _appUserProfileManager;
         private readonly IMapper _mapper;
 
-        public AppUserProfileController(IAppUserProfileManager appUserProfileManager, IMapper mapper)
+        public ManagerAppUserProfileController(IAppUserProfileManager appUserProfileManager, IMapper mapper)
         {
             _appUserProfileManager = appUserProfileManager;
             _mapper = mapper;

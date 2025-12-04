@@ -9,12 +9,12 @@ namespace Onion.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderDetailController : ControllerBase
+    public class ManagerOrderDetailController : ControllerBase
     {
         private readonly IOrderDetailManager _orderDetailManager;
         private readonly IMapper _mapper;
 
-        public OrderDetailController(IOrderDetailManager orderDetailManager, IMapper mapper)
+        public ManagerOrderDetailController(IOrderDetailManager orderDetailManager, IMapper mapper)
         {
             _orderDetailManager = orderDetailManager;
             _mapper = mapper;

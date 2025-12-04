@@ -9,12 +9,12 @@ namespace Onion.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ManagerProductController : ControllerBase
     {
         private readonly IProductManager _productManager;
         private readonly IMapper _mapper;
 
-        public ProductController(IProductManager productManager, IMapper mapper)
+        public ManagerProductController(IProductManager productManager, IMapper mapper)
         {
             _productManager = productManager;
             _mapper = mapper;

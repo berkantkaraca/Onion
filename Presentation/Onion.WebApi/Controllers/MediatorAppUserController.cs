@@ -8,11 +8,11 @@ namespace Onion.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppUserSampleController : ControllerBase
+    public class MediatorAppUserController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public AppUserSampleController(IMediator mediator)
+        public MediatorAppUserController(IMediator mediator)
         {
             _mediator = mediator;
         }

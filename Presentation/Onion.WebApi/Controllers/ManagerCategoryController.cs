@@ -9,11 +9,11 @@ namespace Onion.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class ManagerCategoryController : ControllerBase
     {
         private readonly ICategoryManager _categoryManager;
         private readonly IMapper _mapper;
-        public CategoryController(ICategoryManager categoryManager, IMapper mapper)
+        public ManagerCategoryController(ICategoryManager categoryManager, IMapper mapper)
         {
             _categoryManager = categoryManager;
             _mapper = mapper;

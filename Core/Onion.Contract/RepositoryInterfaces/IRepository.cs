@@ -1,5 +1,4 @@
-﻿using Onion.Domain.Entities;
-using Onion.Domain.Interfaces;
+﻿using Onion.Domain.Interfaces;
 using System.Linq.Expressions;
 
 namespace Onion.Contract.RepositoryInterfaces
