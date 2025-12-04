@@ -3,11 +3,11 @@ using Onion.Application.CqrsAndMediatr.Mediator.Results.AppUserResults;
 
 namespace Onion.Application.CqrsAndMediatr.CQRS.Queries.CategoryQueries
 {
-    public class GetAppUserByIdQuery : IRequest<GetAppUserByIdQueryResult>
+    public class GetCategoryByIdQuery : IRequest<GetAppUserByIdQueryResult>
     {
         public int Id { get; set; }
 
-        public GetAppUserByIdQuery(int id)
+        public GetCategoryByIdQuery(int id)
         {
             Id = id;
         }

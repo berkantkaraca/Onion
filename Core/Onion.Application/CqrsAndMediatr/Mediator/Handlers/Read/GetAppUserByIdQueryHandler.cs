@@ -1,5 +1,5 @@
 using MediatR;
-using Onion.Application.CqrsAndMediatr.CQRS.Queries.CategoryQueries;
+using Onion.Application.CqrsAndMediatr.Mediator.Queries.AppUserQueries;
 using Onion.Application.CqrsAndMediatr.Mediator.Results.AppUserResults;
 using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Entities;
