@@ -11,7 +11,7 @@
 	</ItemGroup>
 	
   <ItemGroup>
-    <ProjectReference Include="..\Onion.Domain\Onion.Domain.csproj" />
+    <ProjectReference Include="..\Onion.Contract\Onion.Contract.csproj" />
   </ItemGroup>
 
 </Project>

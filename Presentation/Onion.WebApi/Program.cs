@@ -15,6 +15,7 @@ builder.Services.AddRepositoryServices();
 builder.Services.AddManagerServices();
 builder.Services.AddDtoMapperService();
 builder.Services.AddVmMapperService();
+builder.Services.AddHandlerService();
 
 var app = builder.Build();
 
