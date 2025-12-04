@@ -14,7 +14,7 @@ namespace Onion.Application.CqrsAndMediatr.CQRS.Handlers.Read
             _repository = repository;
         }
 
-        public async Task<GetCategoryByIdQueryResult> Handle(GetCategoryByIdQuery query)
+        public async Task<GetCategoryByIdQueryResult> Handle(GetAppUserByIdQuery query)
         {
             Category value = await _repository.GetByIdAsync(query.Id);
 

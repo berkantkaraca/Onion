@@ -1,10 +1,13 @@
+using MediatR;
+using Onion.Application.CqrsAndMediatr.Mediator.Results.AppUserResults;
+
 namespace Onion.Application.CqrsAndMediatr.CQRS.Queries.CategoryQueries
 {
-    public class GetCategoryByIdQuery
+    public class GetAppUserByIdQuery : IRequest<GetAppUserByIdQueryResult>
     {
         public int Id { get; set; }
 
-        public GetCategoryByIdQuery(int id)
+        public GetAppUserByIdQuery(int id)
         {
             Id = id;
         }

@@ -8,10 +8,15 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="14.0.0" />
+		<PackageReference Include="MediatR" Version="14.0.0" />
 	</ItemGroup>
 	
   <ItemGroup>
     <ProjectReference Include="..\Onion.Contract\Onion.Contract.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="CqrsAndMediatr\Mediator\Handlers\Modify\" />
   </ItemGroup>
 
 </Project>

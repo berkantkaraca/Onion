@@ -13,6 +13,8 @@ namespace Onion.Application.DependencyResolvers
             services.AddScoped<CreateCategoryCommandHandler>();
             services.AddScoped<UpdateCategoryCommandHandler>();
             services.AddScoped<RemoveCategoryCommandHandler>();
+
+            services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(GetCategoryByIdQueryHandler).Assembly));
         }
     }
 }
