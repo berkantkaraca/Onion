@@ -4,7 +4,7 @@ using Onion.Application.CqrsAndMediatr.Mediator.Results.AppUserResults;
 using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Entities;
 
-namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Read
+namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Read.AppUserHandlers
 {
     public class GetAppUserQueryHandler : IRequestHandler<GetAppUserQuery, List<GetAppUserQueryResult>>
     {

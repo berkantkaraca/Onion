@@ -4,7 +4,7 @@ using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Entities;
 using Onion.Domain.Enums;
 
-namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify
+namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.AppUserHandlers
 {
     public class UpdateAppUserCommandHandler : IRequestHandler<UpdateAppUserCommand>
     {

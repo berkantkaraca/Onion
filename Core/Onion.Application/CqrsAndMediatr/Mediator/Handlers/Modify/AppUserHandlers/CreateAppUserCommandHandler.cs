@@ -3,7 +3,7 @@ using Onion.Application.CqrsAndMediatr.Mediator.Commands.AppUserCommands;
 using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Entities;
 
-namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify
+namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.AppUserHandlers
 {
     public class CreateAppUserCommandHandler : IRequestHandler<CreateAppUserCommand>
     {
