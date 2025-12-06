@@ -7,7 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    // Ayni isimdeki siniflarin (CQRS ve Mediator) cakismasini onlemek icin
+    c.CustomSchemaIds(type => type.ToString());
+});
 
 
 builder.Services.AddDbContextServices();
