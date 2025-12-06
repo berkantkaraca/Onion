@@ -1,8 +1,10 @@
 using MediatR;
 
+using Onion.Application.CqrsAndMediatr.Mediator.Results.AppUserProfileResults;
+
 namespace Onion.Application.CqrsAndMediatr.Mediator.Commands.AppUserProfileCommands
 {
-    public class RemoveAppUserProfileCommand : IRequest
+    public class RemoveAppUserProfileCommand : IRequest<GetAppUserProfileByIdQueryResult>
     {
         public int Id { get; set; }
 

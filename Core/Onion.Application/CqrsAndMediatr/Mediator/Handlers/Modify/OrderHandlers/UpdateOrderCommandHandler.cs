@@ -4,9 +4,11 @@ using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Entities;
 using Onion.Domain.Enums;
 
+using Onion.Application.CqrsAndMediatr.Mediator.Results.OrderResults;
+
 namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.OrderHandlers
 {
-    public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
+    public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, GetOrderByIdQueryResult>
     {
         private readonly IOrderRepository _repository;
 
@@ -15,7 +17,7 @@ namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.OrderHandler
             _repository = repository;
         }
 
-        public async Task Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
+        public async Task<GetOrderByIdQueryResult> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
         {
             Order value = await _repository.GetByIdAsync(request.Id);
 
@@ -25,6 +27,12 @@ namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.OrderHandler
             value.UpdatedDate = DateTime.Now;
 
             await _repository.SaveChangesAsync();
+            return new GetOrderByIdQueryResult
+            {
+                Id = value.Id,
+                ShippingAddress = value.ShippingAddress,
+                AppUserId = value.AppUserId
+            };
         }
     }
 }

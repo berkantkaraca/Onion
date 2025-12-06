@@ -4,9 +4,11 @@ using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Entities;
 using Onion.Domain.Enums;
 
+using Onion.Application.CqrsAndMediatr.Mediator.Results.AppUserResults;
+
 namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.AppUserHandlers
 {
-    public class UpdateAppUserCommandHandler : IRequestHandler<UpdateAppUserCommand>
+    public class UpdateAppUserCommandHandler : IRequestHandler<UpdateAppUserCommand, GetAppUserByIdQueryResult>
     {
         private readonly IAppUserRepository _repository;
 
@@ -15,7 +17,7 @@ namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.AppUserHandl
             _repository = repository;
         }
 
-        public async Task Handle(UpdateAppUserCommand request, CancellationToken cancellationToken)
+        public async Task<GetAppUserByIdQueryResult> Handle(UpdateAppUserCommand request, CancellationToken cancellationToken)
         {
             AppUser value = await _repository.GetByIdAsync(request.Id);
 
@@ -25,6 +27,12 @@ namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.AppUserHandl
             value.UpdatedDate = DateTime.Now;
 
             await _repository.SaveChangesAsync();
+            return new GetAppUserByIdQueryResult
+            {
+                Id = value.Id,
+                UserName = value.UserName,
+                Password = value.Password
+            };
         }
     }
 }

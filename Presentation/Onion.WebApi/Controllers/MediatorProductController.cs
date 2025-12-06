@@ -34,22 +34,22 @@ namespace Onion.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductCommand command)
         {
-            await _mediator.Send(command);
-            return Ok("Product eklendi.");
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateProduct(UpdateProductCommand command)
         {
-            await _mediator.Send(command);
-            return Ok("Product guncellendi.");
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            await _mediator.Send(new RemoveProductCommand(id));
-            return Ok("Product silindi.");
+            var result = await _mediator.Send(new RemoveProductCommand(id));
+            return Ok(result);
         }
     }
 }

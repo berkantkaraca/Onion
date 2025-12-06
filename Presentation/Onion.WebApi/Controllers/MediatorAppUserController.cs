@@ -34,22 +34,22 @@ namespace Onion.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAppUser(CreateAppUserCommand command)
         {
-            await _mediator.Send(command);
-            return Ok("AppUser eklendi.");
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateAppUser(UpdateAppUserCommand command)
         {
-            await _mediator.Send(command);
-            return Ok("AppUser guncellendi.");
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAppUser(int id)
         {
-            await _mediator.Send(new RemoveAppUserCommand(id));
-            return Ok("AppUser silindi.");
+            var result = await _mediator.Send(new RemoveAppUserCommand(id));
+            return Ok(result);
         }
 
     }

@@ -3,9 +3,11 @@ using Onion.Application.CqrsAndMediatr.Mediator.Commands.CategoryCommands;
 using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Entities;
 
+using Onion.Application.CqrsAndMediatr.Mediator.Results.CategoryResults;
+
 namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.CategoryHandlers
 {
-    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand>
+    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, GetCategoryByIdQueryResult>
     {
         private readonly ICategoryRepository _repository;
 
@@ -14,13 +16,20 @@ namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.CategoryHand
             _repository = repository;
         }
 
-        public async Task Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<GetCategoryByIdQueryResult> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            await _repository.CreateAsync(new Category
+            var category = new Category
             {
                 CategoryName = request.CategoryName,
                 Description = request.Description
-            });
+            };
+            await _repository.CreateAsync(category);
+            return new GetCategoryByIdQueryResult
+            {
+                Id = category.Id,
+                CategoryName = category.CategoryName,
+                Description = category.Description
+            };
         }
     }
 }

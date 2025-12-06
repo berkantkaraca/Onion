@@ -4,9 +4,11 @@ using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Entities;
 using Onion.Domain.Enums;
 
+using Onion.Application.CqrsAndMediatr.Mediator.Results.ProductResults;
+
 namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.ProductHandlers
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, GetProductByIdQueryResult>
     {
         private readonly IProductRepository _repository;
 
@@ -15,7 +17,7 @@ namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.ProductHandl
             _repository = repository;
         }
 
-        public async Task Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task<GetProductByIdQueryResult> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             Product value = await _repository.GetByIdAsync(request.Id);
 
@@ -26,6 +28,13 @@ namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.ProductHandl
             value.UpdatedDate = DateTime.Now;
 
             await _repository.SaveChangesAsync();
+            return new GetProductByIdQueryResult
+            {
+                Id = value.Id,
+                ProductName = value.ProductName,
+                UnitPrice = value.UnitPrice,
+                CategoryId = value.CategoryId
+            };
         }
     }
 }

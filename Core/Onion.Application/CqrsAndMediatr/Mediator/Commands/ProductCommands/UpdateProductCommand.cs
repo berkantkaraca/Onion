@@ -1,8 +1,10 @@
 using MediatR;
 
+using Onion.Application.CqrsAndMediatr.Mediator.Results.ProductResults;
+
 namespace Onion.Application.CqrsAndMediatr.Mediator.Commands.ProductCommands
 {
-    public class UpdateProductCommand : IRequest
+    public class UpdateProductCommand : IRequest<GetProductByIdQueryResult>
     {
         public int Id { get; set; }
         public string ProductName { get; set; }

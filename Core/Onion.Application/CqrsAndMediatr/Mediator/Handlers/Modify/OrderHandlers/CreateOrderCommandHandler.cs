@@ -3,9 +3,11 @@ using Onion.Application.CqrsAndMediatr.Mediator.Commands.OrderCommands;
 using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Entities;
 
+using Onion.Application.CqrsAndMediatr.Mediator.Results.OrderResults;
+
 namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.OrderHandlers
 {
-    public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand>
+    public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, GetOrderByIdQueryResult>
     {
         private readonly IOrderRepository _repository;
 
@@ -14,13 +16,20 @@ namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.OrderHandler
             _repository = repository;
         }
 
-        public async Task Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+        public async Task<GetOrderByIdQueryResult> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            await _repository.CreateAsync(new Order
+            var order = new Order
             {
                 ShippingAddress = request.ShippingAddress,
                 AppUserId = request.AppUserId
-            });
+            };
+            await _repository.CreateAsync(order);
+            return new GetOrderByIdQueryResult
+            {
+                Id = order.Id,
+                ShippingAddress = order.ShippingAddress,
+                AppUserId = order.AppUserId
+            };
         }
     }
 }

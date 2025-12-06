@@ -3,9 +3,11 @@ using Onion.Application.CqrsAndMediatr.Mediator.Commands.AppUserCommands;
 using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Entities;
 
+using Onion.Application.CqrsAndMediatr.Mediator.Results.AppUserResults;
+
 namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.AppUserHandlers
 {
-    public class CreateAppUserCommandHandler : IRequestHandler<CreateAppUserCommand>
+    public class CreateAppUserCommandHandler : IRequestHandler<CreateAppUserCommand, GetAppUserByIdQueryResult>
     {
         private readonly IAppUserRepository _repository;
 
@@ -14,13 +16,20 @@ namespace Onion.Application.CqrsAndMediatr.Mediator.Handlers.Modify.AppUserHandl
             _repository = repository;
         }
 
-        public async Task Handle(CreateAppUserCommand request, CancellationToken cancellationToken)
+        public async Task<GetAppUserByIdQueryResult> Handle(CreateAppUserCommand request, CancellationToken cancellationToken)
         {
-            await _repository.CreateAsync(new AppUser
+            var appUser = new AppUser
             {
                 UserName = request.UserName,
                 Password = request.Password
-            });
+            };
+            await _repository.CreateAsync(appUser);
+            return new GetAppUserByIdQueryResult
+            {
+                Id = appUser.Id,
+                UserName = appUser.UserName,
+                Password = appUser.Password
+            };
         }
     }
 }

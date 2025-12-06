@@ -34,22 +34,22 @@ namespace Onion.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CreateCategoryCommand command)
         {
-            await _mediator.Send(command);
-            return Ok("Category eklendi.");
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateCategory(UpdateCategoryCommand command)
         {
-            await _mediator.Send(command);
-            return Ok("Category guncellendi.");
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            await _mediator.Send(new RemoveCategoryCommand(id));
-            return Ok("Category silindi.");
+            var result = await _mediator.Send(new RemoveCategoryCommand(id));
+            return Ok(result);
         }
     }
 }
