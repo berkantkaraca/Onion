@@ -4,6 +4,7 @@ using Onion.Application.ManagerInterfaces;
 using Onion.Contract.RepositoryInterfaces;
 using Onion.Domain.Enums;
 using Onion.Domain.Interfaces;
+using Project.Bll.ErrorHandling;
 
 namespace Onion.InnerInfrastructure.ManagerConcretes
 {
@@ -20,79 +21,106 @@ namespace Onion.InnerInfrastructure.ManagerConcretes
 
         public async Task CreateAsync(T entity)
         {
-            U domainEntity = _mapper.Map<U>(entity);
-            domainEntity.CreatedDate = DateTime.Now;
-            domainEntity.Status = DataStatus.Inserted;
+            await ExceptionHandler.ExecuteAsync(async () =>
+            {
+                U domainEntity = _mapper.Map<U>(entity);
+                domainEntity.CreatedDate = DateTime.Now;
+                domainEntity.Status = DataStatus.Inserted;
 
-            await _repository.CreateAsync(domainEntity);
+                await _repository.CreateAsync(domainEntity);
+            });
         }
 
         public List<T> GetActives()
         {
-            List<U> values = _repository.Where(x => x.Status != DataStatus.Deleted).ToList();
-            return _mapper.Map<List<T>>(values);
+            return ExceptionHandler.Execute(() =>
+            {
+                List<U> values = _repository.Where(x => x.Status != DataStatus.Deleted).ToList();
+                return _mapper.Map<List<T>>(values);
+            });
         }
 
 
         public async Task<List<T>> GetAllAsync()
         {
-            List<U> values = await _repository.GetAllAsync();
-            return _mapper.Map<List<T>>(values);
+            return await ExceptionHandler.ExecuteAsync(async () =>
+            {
+                List<U> values = await _repository.GetAllAsync();
+                return _mapper.Map<List<T>>(values);
+            });
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            U value = await _repository.GetByIdAsync(id);
-            return _mapper.Map<T>(value);
+            return await ExceptionHandler.ExecuteAsync(async () =>
+            {
+                U value = await _repository.GetByIdAsync(id);
+                return _mapper.Map<T>(value);
+            });
         }
 
         public List<T> GetPassives()
         {
-            List<U> values = _repository.Where(x => x.Status == DataStatus.Deleted).ToList();
-            return _mapper.Map<List<T>>(values);
+            return ExceptionHandler.Execute(() =>
+            {
+                List<U> values = _repository.Where(x => x.Status == DataStatus.Deleted).ToList();
+                return _mapper.Map<List<T>>(values);
+            });
         }
 
         public List<T> GetUpdateds()
         {
-            List<U> values = _repository.Where(x => x.Status == DataStatus.Updated).ToList();
-            return _mapper.Map<List<T>>(values);
+            return ExceptionHandler.Execute(() =>
+            {
+                List<U> values = _repository.Where(x => x.Status == DataStatus.Updated).ToList();
+                return _mapper.Map<List<T>>(values);
+            });
         }
 
         public async Task<string> HardDeleteAsync(int id)
         {
-            U originalValue = await _repository.GetByIdAsync(id);
+            return await ExceptionHandler.ExecuteAsync(async () =>
+            {
+                U originalValue = await _repository.GetByIdAsync(id);
 
-            if (originalValue == null || originalValue.Status != DataStatus.Deleted)
-                return "Sadece pasif ve bulunabilen veriler silinebilir";
+                if (originalValue == null || originalValue.Status != DataStatus.Deleted)
+                    return "Sadece pasif ve bulunabilen veriler silinebilir";
 
-            await _repository.DeleteAsync(originalValue);
+                await _repository.DeleteAsync(originalValue);
 
-            return $"{id} id'li veri silinmistir";
+                return $"{id} id'li veri silinmistir";
+            });
         }
 
         public async Task<string> SoftDeleteAsync(int id)
         {
-            U originalValue = await _repository.GetByIdAsync(id);
+            return await ExceptionHandler.ExecuteAsync(async () =>
+            {
+                U originalValue = await _repository.GetByIdAsync(id);
 
-            if (originalValue == null || originalValue.Status == DataStatus.Deleted)
-                return "Veri pasif veya  bulunumadı";
+                if (originalValue == null || originalValue.Status == DataStatus.Deleted)
+                    return "Veri pasif veya  bulunumadı";
 
-            originalValue.Status = DataStatus.Deleted;
-            originalValue.DeletedDate = DateTime.Now;
-            await _repository.SaveChangesAsync();
+                originalValue.Status = DataStatus.Deleted;
+                originalValue.DeletedDate = DateTime.Now;
+                await _repository.SaveChangesAsync();
 
-            return $"{id} id'li veri pasife cekiilmistir";
+                return $"{id} id'li veri pasife cekiilmistir";
+            });
         }
 
         public async Task UpdateAsync(T entity)
         {
-            U originalValue = await _repository.GetByIdAsync(entity.Id);
+            await ExceptionHandler.ExecuteAsync(async () =>
+            {
+                U originalValue = await _repository.GetByIdAsync(entity.Id);
 
-            U newValue = _mapper.Map<U>(entity);
-            newValue.UpdatedDate = DateTime.Now;
-            newValue.Status = DataStatus.Updated;
+                U newValue = _mapper.Map<U>(entity);
+                newValue.UpdatedDate = DateTime.Now;
+                newValue.Status = DataStatus.Updated;
 
-            await _repository.UpdateAsync(originalValue, newValue);
+                await _repository.UpdateAsync(originalValue, newValue);
+            });
         }
     }
 }
